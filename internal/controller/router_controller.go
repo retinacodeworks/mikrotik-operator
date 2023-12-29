@@ -18,6 +18,7 @@ package controller
 
 import (
 	"context"
+	"k8s.io/apimachinery/pkg/api/errors"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -47,10 +48,37 @@ type RouterReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.15.0/pkg/reconcile
 func (r *RouterReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = log.FromContext(ctx)
+	logger := log.FromContext(ctx)
 
-	// Simply connect to the router, get version and model information
-	// and update the status of the Router object
+	var router routerosv1alpha1.Router
+	if err := r.Get(ctx, req.NamespacedName, &router); err != nil {
+		if errors.IsNotFound(err) {
+			logger.Error(err, "router resource did not exist")
+			return ctrl.Result{}, nil
+		} else {
+			logger.Error(err, "failed finding router resource")
+			return ctrl.Result{}, err
+		}
+	}
+
+	routerClient, err := router.GetClient(r.Client)
+	if err != nil {
+		logger.Error(err, "failed getting routeros client")
+		return ctrl.Result{}, err
+	}
+
+	info, err := routerClient.GetVersionInfo()
+	if err != nil {
+		logger.Error(err, "failed getting version info")
+		return ctrl.Result{}, err
+	}
+
+	router.Status.BoardName = info.BoardName
+	router.Status.Version = info.Version
+
+	if err := r.Status().Update(ctx, &router); err != nil {
+		return ctrl.Result{}, err
+	}
 
 	return ctrl.Result{}, nil
 }
