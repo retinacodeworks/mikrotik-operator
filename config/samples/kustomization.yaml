@@ -7,4 +7,5 @@ resources:
 - routeros_v1alpha1_bridgeport.yaml
 - routeros_v1alpha1_pool.yaml
 - routeros_v1alpha1_dhcpserver.yaml
+- routeros_v1alpha1_firewallfilterrule.yaml
 #+kubebuilder:scaffold:manifestskustomizesamples

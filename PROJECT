@@ -74,4 +74,13 @@ resources:
   kind: DhcpServer
   path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: FirewallFilterRule
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"

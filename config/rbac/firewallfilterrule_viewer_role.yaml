@@ -1,0 +1,27 @@
+# permissions for end users to view firewallfilterrules.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: firewallfilterrule-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mikrotik-operator
+    app.kubernetes.io/part-of: mikrotik-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: firewallfilterrule-viewer-role
+rules:
+- apiGroups:
+  - routeros.mikrotik.com
+  resources:
+  - firewallfilterrules
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - routeros.mikrotik.com
+  resources:
+  - firewallfilterrules/status
+  verbs:
+  - get
