@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- routeros_v1alpha1_router.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
