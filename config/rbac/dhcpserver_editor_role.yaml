@@ -1,0 +1,31 @@
+# permissions for end users to edit dhcpservers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: dhcpserver-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mikrotik-operator
+    app.kubernetes.io/part-of: mikrotik-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: dhcpserver-editor-role
+rules:
+- apiGroups:
+  - routeros.mikrotik.com
+  resources:
+  - dhcpservers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - routeros.mikrotik.com
+  resources:
+  - dhcpservers/status
+  verbs:
+  - get

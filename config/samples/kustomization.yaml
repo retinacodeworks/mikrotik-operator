@@ -1,4 +1,10 @@
 ## Append samples of your project ##
 resources:
 - routeros_v1alpha1_router.yaml
+- routeros_v1alpha1_vlan.yaml
+- routeros_v1alpha1_address.yaml
+- routeros_v1alpha1_bridge.yaml
+- routeros_v1alpha1_bridgeport.yaml
+- routeros_v1alpha1_pool.yaml
+- routeros_v1alpha1_dhcpserver.yaml
 #+kubebuilder:scaffold:manifestskustomizesamples

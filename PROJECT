@@ -20,4 +20,58 @@ resources:
   kind: Router
   path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: Vlan
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: Address
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: Bridge
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: BridgePort
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: Pool
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: DhcpServer
+  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"

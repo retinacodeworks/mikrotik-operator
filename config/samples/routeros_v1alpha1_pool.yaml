@@ -1,0 +1,12 @@
+apiVersion: routeros.mikrotik.com/v1alpha1
+kind: Pool
+metadata:
+  labels:
+    app.kubernetes.io/name: pool
+    app.kubernetes.io/instance: pool-sample
+    app.kubernetes.io/part-of: mikrotik-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: mikrotik-operator
+  name: pool-sample
+spec:
+  # TODO(user): Add fields here

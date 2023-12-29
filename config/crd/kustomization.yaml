@@ -3,17 +3,35 @@
 # It should be run by config/default
 resources:
 - bases/routeros.mikrotik.com_routers.yaml
+- bases/routeros.mikrotik.com_vlans.yaml
+- bases/routeros.mikrotik.com_addresses.yaml
+- bases/routeros.mikrotik.com_bridges.yaml
+- bases/routeros.mikrotik.com_bridgeports.yaml
+- bases/routeros.mikrotik.com_pools.yaml
+- bases/routeros.mikrotik.com_dhcpservers.yaml
 #+kubebuilder:scaffold:crdkustomizeresource
 
 patches:
 # [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix.
 # patches here are for enabling the conversion webhook for each CRD
 #- path: patches/webhook_in_routers.yaml
+#- path: patches/webhook_in_vlans.yaml
+#- path: patches/webhook_in_addresses.yaml
+#- path: patches/webhook_in_bridges.yaml
+#- path: patches/webhook_in_bridgeports.yaml
+#- path: patches/webhook_in_pools.yaml
+#- path: patches/webhook_in_dhcpservers.yaml
 #+kubebuilder:scaffold:crdkustomizewebhookpatch
 
 # [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
 # patches here are for enabling the CA injection for each CRD
 #- path: patches/cainjection_in_routers.yaml
+#- path: patches/cainjection_in_vlans.yaml
+#- path: patches/cainjection_in_addresses.yaml
+#- path: patches/cainjection_in_bridges.yaml
+#- path: patches/cainjection_in_bridgeports.yaml
+#- path: patches/cainjection_in_pools.yaml
+#- path: patches/cainjection_in_dhcpservers.yaml
 #+kubebuilder:scaffold:crdkustomizecainjectionpatch
 
 # the following config is for teaching kustomize how to do kustomization for CRDs.
