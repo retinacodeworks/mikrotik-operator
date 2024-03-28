@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"errors"
 	"github.com/go-resty/resty/v2"
+	"github.com/retinacodeworks/mikrotik-operator/internal/routeros/ipv4"
 	"net/http"
 )
 
@@ -25,6 +26,8 @@ func New(opts *Options) *RouterOS {
 		case http.StatusInternalServerError:
 			return errors.New("an unexpected error occured")
 		case http.StatusBadRequest:
+			return errors.New(response.String())
+		case http.StatusNotFound:
 			return errors.New(response.String())
 		default:
 			return nil
@@ -49,4 +52,8 @@ func (r *RouterOS) GetVersionInfo() (VersionInfoResponse, error) {
 		SetResult(&resp).
 		Get("/rest/system/resource")
 	return resp, err
+}
+
+func (r *RouterOS) Ipv4() *ipv4.Ipv4 {
+	return &ipv4.Ipv4{Client: r.Client}
 }

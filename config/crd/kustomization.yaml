@@ -10,6 +10,7 @@ resources:
 - bases/routeros.mikrotik.com_pools.yaml
 - bases/routeros.mikrotik.com_dhcpservers.yaml
 - bases/routeros.mikrotik.com_firewallfilterrules.yaml
+- bases/routeros.mikrotik.com_ipv4addresses.yaml
 #+kubebuilder:scaffold:crdkustomizeresource
 
 patches:
@@ -23,6 +24,7 @@ patches:
 #- path: patches/webhook_in_pools.yaml
 #- path: patches/webhook_in_dhcpservers.yaml
 #- path: patches/webhook_in_firewallfilterrules.yaml
+#- path: patches/webhook_in_ipv4addresses.yaml
 #+kubebuilder:scaffold:crdkustomizewebhookpatch
 
 # [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
@@ -35,6 +37,7 @@ patches:
 #- path: patches/cainjection_in_pools.yaml
 #- path: patches/cainjection_in_dhcpservers.yaml
 #- path: patches/cainjection_in_firewallfilterrules.yaml
+#- path: patches/cainjection_in_ipv4addresses.yaml
 #+kubebuilder:scaffold:crdkustomizecainjectionpatch
 
 # the following config is for teaching kustomize how to do kustomization for CRDs.

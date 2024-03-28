@@ -83,4 +83,13 @@ resources:
   kind: FirewallFilterRule
   path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: mikrotik.com
+  group: routeros
+  kind: Ipv4Address
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
+  version: v1alpha1
 version: "3"

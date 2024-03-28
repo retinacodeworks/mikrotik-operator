@@ -17,8 +17,16 @@ limitations under the License.
 package main
 
 import (
+	"context"
+	"crypto/tls"
+	"encoding/base64"
 	"flag"
+	"fmt"
+	"github.com/go-logr/logr"
+	"github.com/retinacodeworks/mikrotik-operator/internal/routeros"
+	"k8s.io/utils/env"
 	"os"
+	"strings"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
 	// to ensure that exec-entrypoint and run can make use of them.
@@ -48,15 +56,28 @@ func init() {
 	//+kubebuilder:scaffold:scheme
 }
 
+var (
+	metricsAddr          string
+	enableLeaderElection bool
+	probeAddr            string
+
+	mikrotikUrl      string
+	mikrotikUsername string
+	mikrotikPassword string
+)
+
 func main() {
-	var metricsAddr string
-	var enableLeaderElection bool
-	var probeAddr string
+
 	flag.StringVar(&metricsAddr, "metrics-bind-address", ":8080", "The address the metric endpoint binds to.")
 	flag.StringVar(&probeAddr, "health-probe-bind-address", ":8081", "The address the probe endpoint binds to.")
 	flag.BoolVar(&enableLeaderElection, "leader-elect", false,
 		"Enable leader election for controller manager. "+
 			"Enabling this will ensure there is only one active controller manager.")
+
+	mikrotikUrl = env.GetString("MIKROTIK_URL", "")
+	mikrotikUsername = env.GetString("MIKROTIK_USERNAME", "")
+	mikrotikPassword = env.GetString("MIKROTIK_PASSWORD", "")
+
 	opts := zap.Options{
 		Development: true,
 	}
@@ -89,6 +110,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	routerosClient := setupMikrotikClient(context.TODO(), mgr.GetLogger())
 	if err = (&controller.RouterReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
@@ -145,6 +167,14 @@ func main() {
 		setupLog.Error(err, "unable to create controller", "controller", "FirewallFilterRule")
 		os.Exit(1)
 	}
+	if err = (&controller.Ipv4AddressReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+		Sdk:    routerosClient,
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "Ipv4Address")
+		os.Exit(1)
+	}
 	//+kubebuilder:scaffold:builder
 
 	if err := mgr.AddHealthzCheck("healthz", healthz.Ping); err != nil {
@@ -161,4 +191,19 @@ func main() {
 		setupLog.Error(err, "problem running manager")
 		os.Exit(1)
 	}
+}
+
+func setupMikrotikClient(ctx context.Context, logger logr.Logger) *routeros.RouterOS {
+	auth := base64.StdEncoding.EncodeToString([]byte(strings.Join([]string{
+		mikrotikUsername,
+		mikrotikPassword,
+	}, ":")))
+
+	return routeros.New(&routeros.Options{
+		Tls:     &tls.Config{InsecureSkipVerify: true},
+		Address: mikrotikUrl,
+		Headers: map[string]string{
+			"Authorization": fmt.Sprintf("Basic %s", auth),
+		},
+	})
 }
