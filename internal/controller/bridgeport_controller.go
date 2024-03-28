@@ -24,7 +24,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
-	routerosv1alpha1 "github.com/launchboxio/mikrotik-operator/api/v1alpha1"
+	routerosv1alpha1 "github.com/retinacodeworks/mikrotik-operator/api/v1alpha1"
 )
 
 // BridgePortReconciler reconciles a BridgePort object
