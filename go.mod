@@ -1,4 +1,4 @@
-module github.com/launchboxio/mikrotik-operator
+module github.com/retinacodeworks/mikrotik-operator
 
 go 1.20
 

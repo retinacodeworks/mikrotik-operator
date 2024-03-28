@@ -9,7 +9,7 @@ plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
 projectName: mikrotik-operator
-repo: github.com/launchboxio/mikrotik-operator
+repo: github.com/retinacodeworks/mikrotik-operator
 resources:
 - api:
     crdVersion: v1
@@ -18,7 +18,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: Router
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -27,7 +27,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: Vlan
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -36,7 +36,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: Address
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -45,7 +45,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: Bridge
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -54,7 +54,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: BridgePort
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -63,7 +63,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: Pool
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -72,7 +72,7 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: DhcpServer
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 - api:
     crdVersion: v1
@@ -81,6 +81,6 @@ resources:
   domain: mikrotik.com
   group: routeros
   kind: FirewallFilterRule
-  path: github.com/launchboxio/mikrotik-operator/api/v1alpha1
+  path: github.com/retinacodeworks/mikrotik-operator/api/v1alpha1
   version: v1alpha1
 version: "3"

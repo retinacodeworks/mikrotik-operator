@@ -31,8 +31,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	routerosv1alpha1 "github.com/launchboxio/mikrotik-operator/api/v1alpha1"
-	"github.com/launchboxio/mikrotik-operator/internal/controller"
+	routerosv1alpha1 "github.com/retinacodeworks/mikrotik-operator/api/v1alpha1"
+	"github.com/retinacodeworks/mikrotik-operator/internal/controller"
 	//+kubebuilder:scaffold:imports
 )
 
