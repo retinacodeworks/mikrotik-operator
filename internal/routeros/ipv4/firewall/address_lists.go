@@ -6,6 +6,10 @@ import (
 )
 
 type AddressList struct {
+	Address string `json:"address"`
+	Dynamic string `json:"dynamic,omitempty"`
+	List    string `json:"list"`
+	Timeout string `json:"timeout,omitempty"`
 }
 
 type ListAddressListsInput struct{}
