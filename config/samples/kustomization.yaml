@@ -8,4 +8,5 @@ resources:
 - routeros_v1alpha1_pool.yaml
 - routeros_v1alpha1_dhcpserver.yaml
 - routeros_v1alpha1_firewallfilterrule.yaml
+- routeros_v1alpha1_ipv4address.yaml
 #+kubebuilder:scaffold:manifestskustomizesamples
